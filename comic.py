@@ -16,7 +16,7 @@ links=beautiful.select('h3 .newch')
 
 #Getting the name of the chapter
 chapname=beautiful.select('h3 .tips')[0].getText()
-
+chapnumber=chapname[7:]
 a=links[0].getText()
 
 os.chdir('/home/shivesh/Desktop/bleach')
@@ -43,7 +43,7 @@ if a=="new":
  page_number=int(pages[0].getText()[len(pages[0].getText())-5:len(pages[0].getText())-3])
  
  for i in range(1,page_number+1):
-  url = 'http://mangafox.me/manga/bleach/vTBD/c683/'+str(i)+'.html'
+  url = 'http://mangafox.me/manga/bleach/vTBD/c'+chapnumber+'/'+str(i)+'.html'
   res=requests.get(url)
   b=bs4.BeautifulSoup(res.text,"lxml")
   manga=b.select('#image')
@@ -55,3 +55,4 @@ if a=="new":
    imageFile.write(chunk)
   
   imageFile.close()
+  
